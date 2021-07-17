@@ -1,0 +1,15 @@
+/Users/harrysarshogh/Projects/aws/HackerRank/bin/Debug/net5.0/HackerRank.deps.json
+/Users/harrysarshogh/Projects/aws/HackerRank/bin/Debug/net5.0/HackerRank.runtimeconfig.json
+/Users/harrysarshogh/Projects/aws/HackerRank/bin/Debug/net5.0/HackerRank.runtimeconfig.dev.json
+/Users/harrysarshogh/Projects/aws/HackerRank/bin/Debug/net5.0/HackerRank.dll
+/Users/harrysarshogh/Projects/aws/HackerRank/bin/Debug/net5.0/ref/HackerRank.dll
+/Users/harrysarshogh/Projects/aws/HackerRank/bin/Debug/net5.0/HackerRank.pdb
+/Users/harrysarshogh/Projects/aws/HackerRank/obj/Debug/net5.0/HackerRank.csproj.AssemblyReference.cache
+/Users/harrysarshogh/Projects/aws/HackerRank/obj/Debug/net5.0/HackerRank.GeneratedMSBuildEditorConfig.editorconfig
+/Users/harrysarshogh/Projects/aws/HackerRank/obj/Debug/net5.0/HackerRank.AssemblyInfoInputs.cache
+/Users/harrysarshogh/Projects/aws/HackerRank/obj/Debug/net5.0/HackerRank.AssemblyInfo.cs
+/Users/harrysarshogh/Projects/aws/HackerRank/obj/Debug/net5.0/HackerRank.csproj.CoreCompileInputs.cache
+/Users/harrysarshogh/Projects/aws/HackerRank/obj/Debug/net5.0/HackerRank.dll
+/Users/harrysarshogh/Projects/aws/HackerRank/obj/Debug/net5.0/ref/HackerRank.dll
+/Users/harrysarshogh/Projects/aws/HackerRank/obj/Debug/net5.0/HackerRank.pdb
+/Users/harrysarshogh/Projects/aws/HackerRank/obj/Debug/net5.0/HackerRank.genruntimeconfig.cache
