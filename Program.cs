@@ -8,24 +8,91 @@ namespace HackerRank
     class Program
     {
 
-        public static void Main(string[] args)
+        public static void MainAlternaticeTwoChars(string[] args)
         {  // https://www.hackerrank.com/challenges/two-characters/problem
 
             Clear();
-            WriteLine("Enter a string:");
-            var ary = ReadLine().ToArray();
+            Write("Enter a text: ");
+            var str = ReadLine();
+            var dic = new Dictionary<string, string>();
+            for (int i = 0; i < str.Length; i++)
+            {
+                for (int j = i + 1; j < str.Length; j++)
+                {
+                    var key = string.Join("", new[] { str[i], str[j] });
+                    if (!dic.ContainsKey(key))
+                    {
+                        var value =
+                        string.Join("", str.ToArray().Select((ch, index) =>
+                        {
+                            if (key.Contains(ch))
+                                return ch;
+                            else
+                                return '-';
+                        })).Replace("-", "");
 
-            var str = string.Join("", ary);
-            var dic = ary.GroupBy(c => c)
-                         .Select(it => KeyValuePair.Create(it.Key, it.Count()))
-                         .ToDictionary(it => it.Key, it => it.Value);
+                        dic.TryAdd(key, value);
+                    }
+                }
+            }
+            var items = dic.Where(it => !HasCconsecutiveChars(it.Value)).ToList();
+            var result = items.Count == 0 ? 0 : items.Max(it => it.Value.Length);
 
-            Print2Console(dic);
-            //TODO...
-
-
+            WriteLine(result);
         }
 
+        static bool HasCconsecutiveChars(string str)
+        {
+            for (int i = 0; i < str.Length - 1; i++)
+            {
+                if (str[i] == str[i + 1])
+                    return true;
+            }
+
+            return false;
+        }
+
+
+        static List<string> MakeSlices(string str, int len)
+        {
+            if (str.Length <= 2)
+                return new List<string>() { str };
+
+            var result = new List<string>();
+            for (int i = 0; i < str.Length; i += len)
+            {
+                int lenght = i + len <= str.Length ? len : str.Length - i;
+                result.Add(str.Substring(i, lenght));
+            }
+            return result;
+        }
+
+        static HashSet<string> MakeUniqeSlices(string str, int len)
+        {
+            var result = new HashSet<string>();
+            for (int i = 0; i < str.Length; i += len)
+            {
+                int lenght = i + len <= str.Length ? len : str.Length - i;
+                result.Add(str.Substring(i, lenght));
+            }
+            return result;
+        }
+
+        static Dictionary<char, int> ToDic(string input)
+        {
+            return input.ToArray()
+                           .GroupBy(c => c)
+                           .Select(it => KeyValuePair.Create(it.Key, it.Count()))
+                           .ToDictionary(it => it.Key, it => it.Value);
+        }
+
+        static void Print2Console(IEnumerable<string> ary)
+        {
+            for (int j = 0; j < ary.Count(); j++)
+            {
+                WriteLine($"<{ary.ElementAt(j)}>");
+            }
+        }
         static void Print2Console(Dictionary<char, int> dic)
         {
             for (int j = 0; j < dic.Count(); j++)
@@ -33,6 +100,14 @@ namespace HackerRank
                 WriteLine($"<{dic.ElementAt(j).Key}, {dic.ElementAt(j).Value}>");
             }
         }
+        static void Print2Console(Dictionary<string, string> dic)
+        {
+            for (int j = 0; j < dic.Count(); j++)
+            {
+                WriteLine($"<{dic.ElementAt(j).Key}, {dic.ElementAt(j).Value}>");
+            }
+        }
+
 
         public static void MainStrongPassword(string[] args)
         { // https://www.hackerrank.com/challenges/strong-password/problem
