@@ -8,6 +8,12 @@ namespace HackerRank
     partial class Program
     {
         public static void Main(string[] args)
+        {
+
+        }
+
+        
+        public static void MainMarsExplorationMessageCorruption(string[] args)
         { // https://www.hackerrank.com/challenges/mars-exploration/problem
 
             Clear();
@@ -16,7 +22,7 @@ namespace HackerRank
 
             const string SOS = "SOS";
 
-            var allSubs = MakeSubstrs(ary, 3);
+            var allSubs = MakeSubstrs(ary, SOS.Length);
             var wrongsSubs = allSubs.Where(it => it != SOS);
             // Print2Console(wrongsSubs);
 
@@ -28,7 +34,7 @@ namespace HackerRank
                     if (item[j] != SOS[j]) counter++;
                 }
 
-                counter+= SOS.Length - item.Length;
+                counter += SOS.Length - item.Length;
             }
 
             Console.WriteLine(counter);

@@ -7,7 +7,6 @@ namespace HackerRank
 {
     partial class Program
     {
-
         static List<string> MakeSubstrs(string str, int len)
         {
             if (str.Length <= len)
@@ -48,6 +47,7 @@ namespace HackerRank
                 WriteLine($"<{ary.ElementAt(j)}>");
             }
         }
+
         static void Print2Console(Dictionary<char, int> dic)
         {
             for (int j = 0; j < dic.Count(); j++)
@@ -55,6 +55,7 @@ namespace HackerRank
                 WriteLine($"<{dic.ElementAt(j).Key}, {dic.ElementAt(j).Value}>");
             }
         }
+
         static void Print2Console(Dictionary<string, string> dic)
         {
             for (int j = 0; j < dic.Count(); j++)
@@ -70,8 +71,5 @@ namespace HackerRank
                 WriteLine($"<{dic.ElementAt(j).Key}, {dic.ElementAt(j).Value}>");
             }
         }
-
-
-
     }
 }
