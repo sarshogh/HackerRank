@@ -5,8 +5,70 @@ using System.Collections.Generic;
 
 namespace HackerRank
 {
-    class Program
+    partial class Program
     {
+        public static void Main(string[] args)
+        { // https://www.hackerrank.com/challenges/mars-exploration/problem
+
+            Clear();
+            WriteLine("Enter mars message:");
+            var ary = ReadLine();
+
+            const string SOS = "SOS";
+
+            var allSubs = MakeSubstrs(ary, 3);
+            var wrongsSubs = allSubs.Where(it => it != SOS);
+            // Print2Console(wrongsSubs);
+
+            int counter = 0;
+            foreach (var item in wrongsSubs)
+            {
+                for (int j = 0; j < item.Length; j++)
+                {
+                    if (item[j] != SOS[j]) counter++;
+                }
+
+                counter+= SOS.Length - item.Length;
+            }
+
+            Console.WriteLine(counter);
+        }
+
+        public static void MainCaeserCipher(string[] args)
+        { // https://www.hackerrank.com/challenges/caesar-cipher-1/problem
+
+            Clear();
+            Write("Enter string:");
+            var input = ReadLine();
+            WriteLine();
+            Write("Enter rotate number:");
+            var rotate = int.Parse(ReadLine());
+
+            var result = "";
+            foreach (char ch in input)
+            {
+                result += Rotate(ch, rotate).ToString();
+            }
+
+            WriteLine(result);
+        }
+
+        static char Rotate(char ch, int rotate)
+        {
+            var alphabet = "abcdefghijklmnopqrstuvwxyz".ToArray();
+            if (!alphabet.Contains(char.ToLower(ch))) return ch;
+
+            var len = alphabet.Length; // 26       
+            var idx = alphabet.ToList().IndexOf(char.ToLower(ch));
+            var newIndex = idx + rotate;
+            newIndex = newIndex % len;
+            var item = alphabet.ElementAt(newIndex);
+
+            if (char.IsUpper(ch))
+                return char.ToUpper(item);
+            else
+                return item;
+        }
 
         public static void MainAlternaticeTwoChars(string[] args)
         {  // https://www.hackerrank.com/challenges/two-characters/problem
@@ -35,13 +97,13 @@ namespace HackerRank
                     }
                 }
             }
-            var items = dic.Where(it => !HasCconsecutiveChars(it.Value)).ToList();
+            var items = dic.Where(it => !HasConsecutiveChars(it.Value)).ToList();
             var result = items.Count == 0 ? 0 : items.Max(it => it.Value.Length);
 
             WriteLine(result);
         }
 
-        static bool HasCconsecutiveChars(string str)
+        static bool HasConsecutiveChars(string str)
         {
             for (int i = 0; i < str.Length - 1; i++)
             {
@@ -51,63 +113,6 @@ namespace HackerRank
 
             return false;
         }
-
-
-        static List<string> MakeSlices(string str, int len)
-        {
-            if (str.Length <= 2)
-                return new List<string>() { str };
-
-            var result = new List<string>();
-            for (int i = 0; i < str.Length; i += len)
-            {
-                int lenght = i + len <= str.Length ? len : str.Length - i;
-                result.Add(str.Substring(i, lenght));
-            }
-            return result;
-        }
-
-        static HashSet<string> MakeUniqeSlices(string str, int len)
-        {
-            var result = new HashSet<string>();
-            for (int i = 0; i < str.Length; i += len)
-            {
-                int lenght = i + len <= str.Length ? len : str.Length - i;
-                result.Add(str.Substring(i, lenght));
-            }
-            return result;
-        }
-
-        static Dictionary<char, int> ToDic(string input)
-        {
-            return input.ToArray()
-                           .GroupBy(c => c)
-                           .Select(it => KeyValuePair.Create(it.Key, it.Count()))
-                           .ToDictionary(it => it.Key, it => it.Value);
-        }
-
-        static void Print2Console(IEnumerable<string> ary)
-        {
-            for (int j = 0; j < ary.Count(); j++)
-            {
-                WriteLine($"<{ary.ElementAt(j)}>");
-            }
-        }
-        static void Print2Console(Dictionary<char, int> dic)
-        {
-            for (int j = 0; j < dic.Count(); j++)
-            {
-                WriteLine($"<{dic.ElementAt(j).Key}, {dic.ElementAt(j).Value}>");
-            }
-        }
-        static void Print2Console(Dictionary<string, string> dic)
-        {
-            for (int j = 0; j < dic.Count(); j++)
-            {
-                WriteLine($"<{dic.ElementAt(j).Key}, {dic.ElementAt(j).Value}>");
-            }
-        }
-
 
         public static void MainStrongPassword(string[] args)
         { // https://www.hackerrank.com/challenges/strong-password/problem
