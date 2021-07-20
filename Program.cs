@@ -8,11 +8,52 @@ namespace HackerRank
     partial class Program
     {
         public static void Main(string[] args)
-        {
+        { // https://www.hackerrank.com/challenges/hackerrank-in-a-string/problem
 
+            Clear();
+            Write("Enter n:");
+            var count = int.Parse(ReadLine());
+            var queue = new List<string>();
+            for (int i = 0; i < count; i++)
+            {
+                Write($"enter string {i + 1} :");
+                queue.Add(Console.ReadLine());
+            }
+
+            foreach (var str in queue)
+            {
+                WriteLine(HackerrankInString(str));
+            }
         }
 
-        
+        static string HackerrankInString(string item)
+        {
+            const string HA = "hackerrank";
+            if (item.Length < HA.Length) return "NO";
+            item = item.ToLower();
+
+            var nextIndex = 0;
+            var foundChars = "";
+            for (int i = 0; i < HA.Length; i++)
+            {
+                for (int j = nextIndex; j < item.Length; j++)
+                {
+                    if (HA[i] == item[j])
+                    {
+                        foundChars += item[j];
+                        nextIndex = j + 1;
+                        break;
+                    }
+                }
+            }
+
+            if (foundChars == HA)
+                return "YES";
+            else
+                return "NO";
+        }
+
+
         public static void MainMarsExplorationMessageCorruption(string[] args)
         { // https://www.hackerrank.com/challenges/mars-exploration/problem
 
