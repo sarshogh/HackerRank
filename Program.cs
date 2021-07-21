@@ -7,7 +7,30 @@ namespace HackerRank
 {
     partial class Program
     {
-        public static void Main(string[] args)
+
+        public static void MainStringIsAPangrams(string[] args)
+        {// https://www.hackerrank.com/challenges/pangrams/problem
+
+            Clear();
+            Write("Enter a string :");
+
+            var input = Console.ReadLine().Trim();
+            var dic = input.ToLower().ToList().Where(c => c != ' ').GroupBy(ch => ch)
+                           .ToDictionary(it => it.Key, it => it.Count());
+
+            var result = string.Join("", dic.Keys.Select(it => it).ToArray());
+            if (result.Length == "abcdefghijklmnopqrstuvwxyz".Length) //26
+            {
+                WriteLine("pangram");
+            }
+            else
+            {
+                WriteLine("not pangram");
+            }
+        }
+
+
+        public static void MainHackerrankInAString(string[] args)
         { // https://www.hackerrank.com/challenges/hackerrank-in-a-string/problem
 
             Clear();
@@ -30,6 +53,7 @@ namespace HackerRank
         {
             const string HA = "hackerrank";
             if (item.Length < HA.Length) return "NO";
+
             item = item.ToLower();
 
             var nextIndex = 0;
